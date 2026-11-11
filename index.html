@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Taste | Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <h2 class="logo">Royal<span>Taste.</span></h2>
+        <ul id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <a href="#menu" class="order-btn">Order Now</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <p class="tagline">WELCOME TO ROYAL TASTE</p>
+        <h1>Enjoy Our Delicious <span>Food</span></h1>
+        <p>Fresh ingredients, amazing flavors and unforgettable
+        dining experiences.</p>
+        <a href="#menu" class="main-btn">Explore Menu</a>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800"
+        alt="Restaurant interior">
+    </div>
+    <div class="about-content">
+        <h4>ABOUT OUR RESTAURANT</h4>
+        <h2>We Serve Delicious Food With Love</h2>
+        <p>Welcome to Royal Taste! We prepare fresh and delicious
+        meals using quality ingredients. Our goal is to make
+        every meal special for you.</p>
+        <a href="#contact" class="main-btn">Contact Us</a>
+    </div>
+</section>
+
+<section class="menu-section" id="menu">
+    <div class="section-heading">
+        <h4>OUR SPECIAL MENU</h4>
+        <h2>Popular Delicious Food</h2>
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+
+    <div class="cart">
+        <h2>Your Cart 🛒</h2>
+        <div id="cartItems">Your cart is empty.</div>
+        <h3>Total: Rs. <span id="total">0</span></h3>
+        <button class="main-btn" onclick="checkout()">Checkout</button>
+    </div>
+</section>
+
+<section class="reviews" id="reviews">
+    <h4>TESTIMONIALS</h4>
+    <h2>What Our Customers Say</h2>
+    <div class="review-card">
+        <h3>★★★★★</h3>
+        <p>"Amazing food and excellent service. Highly recommended!"</p>
+        <h4>- Happy Customer</h4>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <h2>Visit Our Restaurant</h2>
+    <p>We are always ready to serve you delicious food.</p>
+    <p>📍 Karachi, Pakistan</p>
+    <p>📞 +92 300 1234567</p>
+    <p>✉️ info@royaltaste.com</p>
+    <a href="https://wa.me/923001234567" class="main-btn">
+        Order on WhatsApp
+    </a>
+</section>
+
+<footer>
+    <h2>Royal<span>Taste.</span></h2>
+    <p>© 2026 Royal Taste. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+<script>
+    
+const foods = [
+    {
+        name: "Zinger Burger",
+        price: 550,
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600"
+    },
+    {
+        name: "Pizza",
+        price: 1200,
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600"
+    },
+    {
+        name: "Chicken Biryani",
+        price: 400,
+        image: "https://images.unsplash.com/photo-1563379091339-03246963d96c?w=600"
+    },
+    {
+        name: "French Fries",
+        price: 250,
+        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600"
+    },
+    {
+        name: "Sandwich",
+        price: 350,
+        image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600"
+    },
+    {
+        name: "Pasta",
+        price: 650,
+        image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600"
+    }
+];
+
+let cart = [];
+
+const menuGrid = document.getElementById("menuGrid");
+
+foods.forEach((food, index) => {
+    menuGrid.innerHTML += `
+        <div class="food-card">
+            <img src="${food.image}" alt="${food.name}">
+            <h3>${food.name}</h3>
+            <p>Rs. ${food.price}</p>
+            <button onclick="addToCart(${index})">
+                Add To Cart
+            </button>
+        </div>
+    `;
+});
+
+function addToCart(index) {
+    cart.push(foods[index]);
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById("cartItems");
+    const totalElement = document.getElementById("total");
+
+    let total = 0;
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = "Your cart is empty.";
+    } else {
+        cartItems.innerHTML = cart.map((item, index) => {
+            total += item.price;
+
+            return `
+                <div>
+                    ${item.name} - Rs. ${item.price}
+                    <button onclick="removeItem(${index})">❌</button>
+                </div>
+            `;
+        }).join("");
+    }
+
+    totalElement.innerText = total;
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Please add food to your cart first!");
+        return;
+    }
+
+    let message = "Hello! I want to order:%0A";
+    let total = 0;
+
+    cart.forEach(item => {
+        message += `${item.name} - Rs. ${item.price}%0A`;
+        total += item.price;
+    });
+
+    message += `%0ATotal: Rs. ${total}`;
+
+    window.open(
+        "https://wa.me/923001234567?text=" + message,
+        "_blank"
+    );
+}
+
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+}
+
+</script>
+</html>

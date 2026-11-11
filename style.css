@@ -1,0 +1,277 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #111;
+    color: white;
+}
+
+header {
+    background: #080808;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: white;
+    font-size: 28px;
+}
+
+.logo span, footer span {
+    color: #ff9f1c;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.navbar ul a {
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.navbar ul a:hover {
+    color: #ff9f1c;
+}
+
+.order-btn, .main-btn {
+    background: #ff9f1c;
+    color: #111;
+    padding: 13px 23px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 50px 10%;
+    background:
+    linear-gradient(90deg, #000 15%, #0009),
+    url("https://images.unsplash.com/photo-1515003197210-e0cd7184f8b5?w=1600")
+    center/cover;
+}
+
+.hero-content {
+    max-width: 550px;
+}
+
+.tagline, .section-heading h4, .about-content h4 {
+    color: #ff9f1c;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #ff9f1c;
+}
+
+.hero-content p {
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.about {
+    max-width: 1200px;
+    margin: auto;
+    padding: 100px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.about-content h2, .section-heading h2 {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+.menu-section, .reviews, .contact {
+    padding: 80px 7%;
+    text-align: center;
+}
+
+.section-heading {
+    margin-bottom: 40px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.food-card {
+    background: #202020;
+    border-radius: 12px;
+    overflow: hidden;
+    padding-bottom: 25px;
+    transition: .3s;
+}
+
+.food-card:hover {
+    transform: translateY(-8px);
+}
+
+.food-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.food-card h3 {
+    margin: 18px 0 10px;
+}
+
+.food-card p {
+    color: #ff9f1c;
+    margin-bottom: 15px;
+}
+
+.food-card button {
+    background: #ff9f1c;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.cart {
+    max-width: 600px;
+    margin: 60px auto 0;
+    background: #202020;
+    padding: 30px;
+    border-radius: 12px;
+    line-height: 2;
+}
+
+.cart h2 {
+    margin-bottom: 15px;
+}
+
+.cart button {
+    margin-top: 15px;
+}
+
+.reviews {
+    background: #1c1c1c;
+}
+
+.review-card {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #292929;
+    border-radius: 12px;
+}
+
+.review-card h3 {
+    color: #ff9f1c;
+    margin-bottom: 15px;
+}
+
+.review-card p {
+    line-height: 1.8;
+}
+
+.contact p {
+    margin: 18px;
+    color: #ccc;
+}
+
+.contact h2 {
+    margin-bottom: 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 35px;
+    background: #080808;
+    line-height: 2;
+}
+
+@media(max-width: 768px) {
+    .navbar ul {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: #080808;
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    .navbar ul.show {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .order-btn {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+}
